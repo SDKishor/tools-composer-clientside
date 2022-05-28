@@ -2,9 +2,9 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer class="footer p-10 bg-base-200 text-base-content">
+    <footer className="footer p-10 bg-base-200 text-base-content">
       <div>
-        <div class="normal-case text-5xl pt-5 pb-2">
+        <div className="normal-case text-5xl pt-5 pb-2">
           Tool <span className="text-primary pl-1 font-bold">Composer </span>
         </div>
 
@@ -15,22 +15,22 @@ export default function Footer() {
         </p>
       </div>
       <div>
-        <span class="footer-title">Services</span>
-        <a class="link link-hover">Branding</a>
-        <a class="link link-hover">Design</a>
-        <a class="link link-hover">Marketing</a>
-        <a class="link link-hover">Advertisement</a>
+        <span className="footer-title">Services</span>
+        <p className="link link-hover">Branding</p>
+        <p className="link link-hover">Design</p>
+        <p className="link link-hover">Marketing</p>
+        <p className="link link-hover">Advertisement</p>
       </div>
       <div>
-        <span class="footer-title">Company</span>
-        <a class="link link-hover">About us</a>
-        <a class="link link-hover">Contact</a>
+        <span className="footer-title">Company</span>
+        <p className="link link-hover">About us</p>
+        <p className="link link-hover">Contact</p>
       </div>
       <div>
-        <span class="footer-title">Legal</span>
-        <a class="link link-hover">Terms of use</a>
-        <a class="link link-hover">Privacy policy</a>
-        <a class="link link-hover">Cookie policy</a>
+        <span className="footer-title">Legal</span>
+        <p className="link link-hover">Terms of use</p>
+        <p className="link link-hover">Privacy policy</p>
+        <p className="link link-hover">Cookie policy</p>
       </div>
     </footer>
   );

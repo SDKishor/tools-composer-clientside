@@ -9,30 +9,32 @@ import React from "react";
 
 export default function Summary() {
   return (
-    <div className="flex py-24 ">
+    <div className="flex py-24 text-white ">
       <div className="w-1/4 h-72 bg-primary flex flex-col justify-center items-center">
-        <FontAwesomeIcon className="text-5xl pb-5" icon={faFlag} />
+        <FontAwesomeIcon className="text-5xl " icon={faFlag} />
         <div className="text-4xl text-center font-bold ">
-          100+ <br /> Country
+          100+ <br /> <span className="text-3xl font-normal">Country</span>
         </div>
       </div>
       <div className="w-1/4 h-72 bg-secondary flex flex-col justify-center items-center">
-        <FontAwesomeIcon className="text-5xl pb-5" icon={faHandshake} />
+        <FontAwesomeIcon className="text-5xl" icon={faHandshake} />
         <div className="text-4xl text-center font-bold ">
           30+ <br />
-          Years of Trust
+          <span className="text-3xl font-normal">Years of Trust</span>
         </div>
       </div>
       <div className="w-1/4 h-72 bg-primary flex flex-col justify-center items-center">
-        <FontAwesomeIcon className="text-5xl pb-5" icon={faPeopleRoof} />
-        <div className="text-4xl text-center font-bold ">
-          347+ <br /> Happy Clients
+        <FontAwesomeIcon className="text-5xl " icon={faPeopleRoof} />
+        <div className="text-4xl text-center font-bold pt-2 ">
+          347+ <br />
+          <span className="text-3xl font-normal">Happy Clients</span>
         </div>
       </div>
       <div className="w-1/4 h-72 bg-secondary flex flex-col justify-center items-center">
-        <FontAwesomeIcon className="text-5xl pb-5" icon={faRectangleList} />
+        <FontAwesomeIcon className="text-5xl " icon={faRectangleList} />
         <div className="text-4xl text-center font-bold ">
-          500+ <br /> Complete project
+          500+ <br />
+          <span className="text-3xl font-normal">Complete project</span>
         </div>
       </div>
     </div>
