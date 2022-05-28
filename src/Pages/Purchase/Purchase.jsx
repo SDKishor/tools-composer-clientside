@@ -33,7 +33,7 @@ export default function Purchase() {
   return (
     <div className="h-screen flex items-center">
       <div className="card lg:card-side bg-base-100 shadow-xl w-10/12 mx-auto  mb-24">
-        <div className="w-1/2">
+        <div className="lg:w-1/2 flex justify-center items-center">
           <div className=" card w-80 bg-base-100 m-8 rounded-sm ">
             <figure
               className={`shadow-md h-64  bg-center bg-no-repeat bg-cover relative overflow-hidden `}

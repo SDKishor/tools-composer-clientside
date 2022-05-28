@@ -67,7 +67,9 @@ export default function Header() {
       </div>
       <div className="navbar-end mx-5">
         {user ? (
-          <p className="btn btn-ghost mr-2">{user.displayName.split(" ")[0]}</p>
+          <p className="btn btn-ghost mr-2 hidden sm:inline-flex ">
+            {user.displayName.split(" ")[0]}
+          </p>
         ) : (
           <Link to={"/login"} className="btn btn-ghost mr-2">
             Log In
