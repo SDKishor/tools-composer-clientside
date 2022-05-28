@@ -12,7 +12,13 @@ export default function Header() {
         <CustomLink to="/">Home</CustomLink>
       </li>
       <li>
-        <CustomLink to="/about">About</CustomLink>
+        <CustomLink to="/dashboard">Dashboard</CustomLink>
+      </li>
+      <li>
+        <CustomLink to="/Purchase">Purchase</CustomLink>
+      </li>
+      <li>
+        <CustomLink to="/blogs">Blogs</CustomLink>
       </li>
     </>
   );

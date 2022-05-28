@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Banar() {
   let heroImg = {
-    background: ` url("https://api.lorem.space/image/fashion?w=1000&h=800") no-repeat center center / cover`,
+    background: ` url("https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80") no-repeat center center / cover`,
   };
 
   return (
