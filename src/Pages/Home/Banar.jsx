@@ -6,13 +6,13 @@ export default function Banar() {
   };
 
   return (
-    <div class="hero min-h-screen" style={heroImg}>
-      <div class="hero-overlay bg-opacity-60"></div>
-      <div class="hero-content text-center text-neutral-content">
-        <div class="max-w-kl">
-          <h1 class="mb-5 text-5xl ">Hello there</h1>
-          <p class="mb-5 text-7xl font-bold">NEED NEW TOOLS ?</p>
-          <button class="btn btn-lg btn-primary">Get Started</button>
+    <div className="hero min-h-screen" style={heroImg}>
+      <div className="hero-overlay bg-opacity-60"></div>
+      <div className="hero-content text-center text-neutral-content">
+        <div className="max-w-kl">
+          <h1 className="mb-5 text-5xl ">Hello there</h1>
+          <p className="mb-5 text-7xl font-bold">NEED NEW TOOLS ?</p>
+          <button className="btn btn-lg btn-primary">Get Started</button>
         </div>
       </div>
     </div>
