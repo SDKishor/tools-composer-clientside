@@ -29,12 +29,10 @@ export default function SignUp() {
 
     await createUserWithEmailAndPassword(Email, Password);
 
-    await updateProfile({ Name });
-  };
+    await updateProfile({ displayName: Name });
 
-  if (user) {
     navigate("/");
-  }
+  };
 
   if (loading || updating) {
     <Loading></Loading>;

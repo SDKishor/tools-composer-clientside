@@ -1,5 +1,8 @@
+import { signOut } from "firebase/auth";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import auth from "../firebase.init";
 import CustomLink from "../hooks/CustomLink";
 
 export default function Header() {
@@ -13,6 +16,14 @@ export default function Header() {
       </li>
     </>
   );
+
+  const [user, loading, error] = useAuthState(auth);
+
+  console.log(user);
+
+  const handleLogout = () => {
+    signOut(auth);
+  };
 
   return (
     <div className="navbar bg-base-100">
@@ -49,12 +60,26 @@ export default function Header() {
         <ul className="menu menu-horizontal p-0">{menuItems}</ul>
       </div>
       <div className="navbar-end mx-5">
-        <Link to={"/login"} className="btn btn-ghost mr-2">
-          Log In
-        </Link>
-        <Link to={"/signup"} className="btn btn-primary">
-          Get started
-        </Link>
+        {user ? (
+          <p className="btn btn-ghost mr-2">{user.displayName.split(" ")[0]}</p>
+        ) : (
+          <Link to={"/login"} className="btn btn-ghost mr-2">
+            Log In
+          </Link>
+        )}
+
+        {user ? (
+          <button
+            onClick={handleLogout}
+            className="btn btn-primary font-bold text-white"
+          >
+            Sign Out
+          </button>
+        ) : (
+          <Link to={"/signup"} className="btn btn-primary font-bold text-white">
+            Get started
+          </Link>
+        )}
       </div>
     </div>
   );
