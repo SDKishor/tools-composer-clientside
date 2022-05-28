@@ -1,40 +1,61 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-
+import auth from "../../firebase.init";
+import {
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
+import Loading from "../../hooks/Loading";
 export default function SignUp() {
-  const {
-    watch,
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  let errorText = "";
-  const onSubmit = (data) => {
-    console.log(data);
+  const { register, handleSubmit } = useForm();
+  const [error, setError] = useState("");
+  const [createUserWithEmailAndPassword, user, loading, usererror] =
+    useCreateUserWithEmailAndPassword(auth);
+  const [updateProfile, updating, UpdateError] = useUpdateProfile(auth);
+  const navigate = useNavigate();
+
+  const onSubmit = async (data) => {
+    const { Name, Email, Password, ConfirmPassword } = data;
+    console.log(Name, Email, Password, ConfirmPassword);
+    if (Password !== ConfirmPassword) {
+      setError("your Password and confirm password does not match");
+      return;
+    }
+    if (Password.length < 6) {
+      setError("your Password should at least 6 character");
+      return;
+    }
+
+    await createUserWithEmailAndPassword(Email, Password);
+
+    await updateProfile({ Name });
   };
 
-  console.log(watch);
-  //error handling
-  console.log(errors);
-
-  if (errors?.Password?.type === "pattern") {
-    errorText = <p>Please provide at least 6 character as Password</p>;
-  }
-  if (errors?.Password?.type === "pattern") {
-    errorText = <p>Please provide at least 6 character as Password</p>;
+  if (user) {
+    navigate("/");
   }
 
+  if (loading || updating) {
+    <Loading></Loading>;
+  }
+
+  if (usererror || UpdateError) {
+    let temp = usererror.message || UpdateError.message;
+    setError({ temp });
+  }
+
+  console.log(error);
   return (
-    <div class="relative flex flex-col justify-center min-h-screen overflow-hidden">
-      <div class="w-full p-6 m-auto bg-white rounded shadow-lg ring-2 ring-primary md:max-w-md">
-        <h1 class="text-3xl font-semibold text-center text-primary ">
+    <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
+      <div className="w-full p-6 m-auto bg-white rounded shadow-lg ring-2 ring-primary md:max-w-md">
+        <h1 className="text-3xl font-semibold text-center text-primary ">
           Sign Up
         </h1>
 
-        <form class="mt-6" onSubmit={handleSubmit(onSubmit)}>
+        <form className="mt-6" onSubmit={handleSubmit(onSubmit)}>
           <div>
-            <label htmlFor="Name" class="block text-sm text-gray-800 ml-2">
+            <label htmlFor="Name" className="block text-sm text-gray-800 ml-2">
               Name
             </label>
             <input
@@ -47,7 +68,7 @@ export default function SignUp() {
             />
           </div>
           <div>
-            <label htmlFor="email" class="block text-sm text-gray-800 ml-2">
+            <label htmlFor="email" className="block text-sm text-gray-800 ml-2">
               Email
             </label>
             <input
@@ -56,13 +77,14 @@ export default function SignUp() {
               className="block w-full px-4 py-2 my-2 text-primary bg-white border rounded-md focus:border-primary focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40"
               type="email"
               placeholder="Email"
-              {...register("Email", {
-                pattern: /^\S+@\S+$/i,
-              })}
+              {...register("Email")}
             />
           </div>
           <div>
-            <label htmlFor="password" class="block text-sm text-gray-800 ml-2">
+            <label
+              htmlFor="password"
+              className="block text-sm text-gray-800 ml-2"
+            >
               Password
             </label>
             <input
@@ -73,14 +95,13 @@ export default function SignUp() {
               placeholder="Password"
               {...register("Password", {
                 maxLength: 100,
-                pattern: /^.{6,}$/,
               })}
             />
           </div>
           <div>
             <label
               htmlFor="ConfirmPassword"
-              class="block text-sm text-gray-800 ml-2"
+              className="block text-sm text-gray-800 ml-2"
             >
               Confirm Password
             </label>
@@ -93,20 +114,20 @@ export default function SignUp() {
               {...register("ConfirmPassword")}
             />
           </div>
-          <div className="text-red-500">{errorText}</div>
+          <p className="text-red-500">{error}</p>
 
-          <div class="mt-6">
+          <div className="mt-6">
             <input
               type="submit"
-              class="w-full px-4 py-3 tracking-wide text-white transition-colors duration-200 transform bg-primary rounded-md  focus:outline-none focus:bg-secondary cursor-pointer"
+              className="w-full px-4 py-3 tracking-wide text-white transition-colors duration-200 transform bg-primary rounded-md  focus:outline-none focus:bg-secondary cursor-pointer"
             />
           </div>
         </form>
-        <p class="mt-6 text-xs font-light text-center text-gray-700">
+        <p className="mt-6 text-xs font-light text-center text-gray-700">
           Already have an account?
           <Link
             to={"/signup"}
-            class="font-medium text-primary hover:underline pl-2"
+            className="font-medium text-primary hover:underline pl-2"
           >
             Log In
           </Link>

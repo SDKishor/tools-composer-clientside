@@ -3,50 +3,53 @@ import { Link } from "react-router-dom";
 
 export default function Login() {
   return (
-    <div class="relative flex flex-col justify-center min-h-screen overflow-hidden">
-      <div class="w-full p-6 m-auto bg-white rounded shadow-lg ring-2 ring-primary md:max-w-md">
-        <h1 class="text-3xl font-semibold text-center ">
+    <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
+      <div className="w-full p-6 m-auto bg-white rounded shadow-lg ring-2 ring-primary md:max-w-md">
+        <h1 className="text-3xl font-semibold text-center ">
           Tool <span className="text-primary pl-1 font-bold">Composer </span>
         </h1>
 
-        <form class="mt-6">
+        <form className="mt-6">
           <div>
-            <label for="email" class="block text-sm text-gray-800 ml-2">
+            <label for="email" className="block text-sm text-gray-800 ml-2">
               Email
             </label>
             <input
               type="email"
-              class="block w-full px-4 py-2 mt-2 text-primary bg-white border rounded-md focus:border-primary focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40"
+              className="block w-full px-4 py-2 mt-2 text-primary bg-white border rounded-md focus:border-primary focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40"
             />
           </div>
-          <div class="mt-6">
-            <label for="password" class="block text-sm text-gray-800 ml-2">
+          <div className="mt-6">
+            <label for="password" className="block text-sm text-gray-800 ml-2">
               Password
             </label>
             <input
               type="password"
-              class="block w-full px-4 py-2 mt-2 text-primary bg-white border rounded-md focus:border-primary focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40 mb-2 "
+              className="block w-full px-4 py-2 mt-2 text-primary bg-white border rounded-md focus:border-primary focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40 mb-2 "
             />
           </div>
           <a
             href="#"
-            class="text-xs text-gray-600 hover:underline hover:text-primary ml-2"
+            className="text-xs text-gray-600 hover:underline hover:text-primary ml-2"
           >
             Forget Password?
           </a>
-          <div class="mt-6">
-            <button class="w-full px-4 py-3 tracking-wide text-white transition-colors duration-200 transform bg-primary rounded-md  focus:outline-none focus:bg-secondary">
+          <div className="mt-6">
+            <button className="w-full px-4 py-3 tracking-wide text-white transition-colors duration-200 transform bg-primary rounded-md  focus:outline-none focus:bg-secondary">
               Login
             </button>
           </div>
         </form>
-        <p class="mt-6 text-xs font-light text-center text-gray-700">
+        <p className="mt-6 text-xs font-light text-center text-gray-700">
           Don't have an account?
-          <Link to={"/signup"} class="font-medium text-primary hover:underline">
+          <Link
+            to={"/signup"}
+            className="font-medium text-primary hover:underline"
+          >
             Sign up
           </Link>
         </p>
-        <button class="w-full px-4 py-3 mt-5 tracking-wide text-white transition-colors duration-200 transform bg-primary rounded-md  focus:outline-none focus:bg-secondary flex justify-center items-center">
+        <button className="w-full px-4 py-3 mt-5 tracking-wide text-white transition-colors duration-200 transform bg-primary rounded-md  focus:outline-none focus:bg-secondary flex justify-center items-center">
           <svg
             className="pr-2"
             width={"30px"}
