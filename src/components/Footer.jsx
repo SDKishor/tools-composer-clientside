@@ -4,11 +4,11 @@ export default function Footer() {
   return (
     <footer class="footer p-10 bg-base-200 text-base-content">
       <div>
-        <div class="normal-case text-5xl pt-5">
+        <div class="normal-case text-5xl pt-5 pb-2">
           Tool <span className="text-primary pl-1 font-bold">Composer </span>
         </div>
 
-        <p>
+        <p className="pl-3">
           TOOL COMPOSER Industries Ltd.
           <br />
           Providing reliable tools since 1992
