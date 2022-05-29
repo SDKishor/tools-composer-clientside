@@ -1,16 +1,38 @@
 import React from "react";
+import { useQuery } from "react-query";
 import { toast } from "react-toastify";
-import { UseUserData } from "../../hooks/UseUserData";
 
 export default function MakeAdmin() {
-  const [users, setUsers] = UseUserData();
+  const {
+    isLoading,
+    data: users,
+    refetch,
+  } = useQuery("users", () => {
+    return fetch("http://localhost:5000/users").then((res) => res.json());
+  });
 
-  console.log(users);
+  const makeAdmin = (user) => {
+    const email = user;
+    const currentUser = { role: "admin" };
 
-  const makeAdmin = () => {};
+    if (email) {
+      fetch(`http://localhost:5000/user/${email}`, {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(currentUser),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+        });
+    }
+    refetch();
+  };
 
   const handleDelete = (id) => {
-    const url = `https://gentle-waters-15419.herokuapp.com/users/${id}`;
+    const url = `http://localhost:5000/users/${id}`;
     const proceed = window.confirm("are you sure?");
 
     if (proceed) {
@@ -20,17 +42,16 @@ export default function MakeAdmin() {
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {
-            const remaining = users.filter((user) => user._id !== id);
-            setUsers(remaining);
-            toast("Item deleted");
+            toast.success("Item deleted");
           }
         });
     }
+    refetch();
   };
   return (
     <div>
-      <div class="overflow-x-auto">
-        <table class="table w-full">
+      <div className="overflow-x-auto">
+        <table className="table w-full">
           <thead>
             <tr>
               <th></th>
@@ -40,31 +61,31 @@ export default function MakeAdmin() {
             </tr>
           </thead>
           <tbody>
-            {users.map((user, index) => (
-              <>
-                <tr>
-                  <th>{index + 1}</th>
-                  <td>{user.email}</td>
-                  <td>
-                    {user.role !== "admin" && (
-                      <button
-                        onClick={() => makeAdmin(user._id)}
-                        className="btn bg-white text-red-500 font-bold text-2xl "
-                      >
-                        admin
-                      </button>
-                    )}
-                  </td>
-                  <td>
+            {users?.map((user, index) => (
+              <tr key={user._id}>
+                <th>{index + 1}</th>
+                <td>{user.email}</td>
+                <td>
+                  {user.role !== "admin" && (
+                    <button
+                      onClick={() => makeAdmin(user.email)}
+                      className="btn btn-sm bg-white text-red-500 font-bold text-md "
+                    >
+                      admin
+                    </button>
+                  )}
+                </td>
+                <td>
+                  {user.email !== "admin" && (
                     <button
                       onClick={() => handleDelete(user._id)}
                       className="btn bg-white text-red-500 font-bold text-2xl "
                     >
                       x
                     </button>
-                  </td>
-                </tr>
-              </>
+                  )}
+                </td>
+              </tr>
             ))}
           </tbody>
         </table>

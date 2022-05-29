@@ -12,7 +12,7 @@ export default function UseIsAdmin() {
     if (accesstoken == null) {
       Navigate("/login");
     }
-    fetch(`https://gentle-waters-15419.herokuapp.com/users/${user.email}`, {
+    fetch(`http://localhost:5000/users/${user.email}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${accesstoken}`,

@@ -25,18 +25,28 @@ export default function Dashboard() {
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu p-4 overflow-y-auto w-80 text-base-content ">
           <li>
-            <CustomLink to={"/dashboard/"}>My Profile</CustomLink>
+            <CustomLink className="h-full w-full" to={"/dashboard/"}>
+              My Profile
+            </CustomLink>
           </li>
 
           {!isAdmin && (
             <>
               <li>
-                <CustomLink to={"/dashboard/addreview"}>
+                <CustomLink
+                  className="h-full w-full"
+                  to={"/dashboard/addreview"}
+                >
                   Add A Review
                 </CustomLink>
               </li>
               <li>
-                <CustomLink to={"/dashboard/myorders"}>My Orders</CustomLink>
+                <CustomLink
+                  className="h-full w-full"
+                  to={"/dashboard/myorders"}
+                >
+                  My Orders
+                </CustomLink>
               </li>
             </>
           )}
@@ -44,20 +54,34 @@ export default function Dashboard() {
           {isAdmin && (
             <>
               <li>
-                <CustomLink to={"/dashboard/addproduct"}>
+                <CustomLink
+                  className="h-full w-full"
+                  to={"/dashboard/addproduct"}
+                >
                   Add Product
                 </CustomLink>
               </li>
               <li>
-                <CustomLink to={"/dashboard/makeadmin"}>Make Admin</CustomLink>
+                <CustomLink
+                  className="h-full w-full"
+                  to={"/dashboard/makeadmin"}
+                >
+                  Manage Users
+                </CustomLink>
               </li>
               <li>
-                <CustomLink to={"/dashboard/manageorders"}>
+                <CustomLink
+                  className="h-full w-full"
+                  to={"/dashboard/manageorders"}
+                >
                   Manage Orders
                 </CustomLink>
               </li>
               <li>
-                <CustomLink to={"/dashboard/manageproducts"}>
+                <CustomLink
+                  className="h-full w-full"
+                  to={"/dashboard/manageproducts"}
+                >
                   Manage Products
                 </CustomLink>
               </li>

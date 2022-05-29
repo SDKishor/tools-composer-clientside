@@ -8,7 +8,7 @@ export default function UseToken(user) {
     const currentUser = { email: email };
 
     if (email) {
-      fetch(`https://gentle-waters-15419.herokuapp.com/user/${email}`, {
+      fetch(`http://localhost:5000/user/${email}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",

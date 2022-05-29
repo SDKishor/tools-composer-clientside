@@ -4,7 +4,7 @@ export const UseToolData = () => {
   const [tools, setTools] = useState([]);
 
   useEffect(() => {
-    fetch("https://gentle-waters-15419.herokuapp.com/tools")
+    fetch("http://localhost:5000/tools")
       .then((res) => res.json())
       .then((data) => setTools(data));
   }, []);
