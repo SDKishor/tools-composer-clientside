@@ -28,7 +28,7 @@ export default function AddProduct() {
     };
     console.log(productData);
 
-    fetch("http://localhost:5000/additems", {
+    fetch("https://gentle-waters-15419.herokuapp.com/additems", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

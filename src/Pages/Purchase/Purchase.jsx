@@ -17,7 +17,7 @@ export default function Purchase() {
     if (accesstoken == null) {
       navigate("/login");
     }
-    fetch(`http://localhost:5000/tools/${id}`, {
+    fetch(`https://gentle-waters-15419.herokuapp.com/tools/${id}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${accesstoken}`,

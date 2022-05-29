@@ -10,7 +10,7 @@ export default function MakeAdmin() {
   const makeAdmin = () => {};
 
   const handleDelete = (id) => {
-    const url = `http://localhost:5000/users/${id}`;
+    const url = `https://gentle-waters-15419.herokuapp.com/users/${id}`;
     const proceed = window.confirm("are you sure?");
 
     if (proceed) {
