@@ -8,7 +8,6 @@ import Summary from "./Summary";
 export default function Home() {
   const [tools, setTools] = UseToolData();
 
-  console.log(tools);
   return (
     <div className="home">
       <Banar></Banar>

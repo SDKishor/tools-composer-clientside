@@ -40,8 +40,6 @@ export default function Purchase() {
     const address = addressRef.current.value;
 
     const placeOrder = { email, phoneNum, name, OrderQuentuty, address };
-
-    console.log(placeOrder);
   };
   return (
     <div className="h-screen flex items-center">

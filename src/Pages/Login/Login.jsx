@@ -28,7 +28,6 @@ export default function Login() {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     signInWithEmailAndPassword(email, password);
-    console.log(email, password);
   };
 
   const handleGoogleSingin = (e) => {

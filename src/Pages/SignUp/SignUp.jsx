@@ -19,7 +19,7 @@ export default function SignUp() {
 
   const onSubmit = async (data) => {
     const { Name, Email, Password, ConfirmPassword } = data;
-    console.log(Name, Email, Password, ConfirmPassword);
+
     if (Password !== ConfirmPassword) {
       setError("your Password and confirm password does not match");
       return;
@@ -47,7 +47,6 @@ export default function SignUp() {
     setError({ temp });
   }
 
-  console.log(error);
   return (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
       <div className="w-full p-6 m-auto bg-white rounded shadow-lg ring-2 ring-primary md:max-w-md">
