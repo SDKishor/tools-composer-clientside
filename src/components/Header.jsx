@@ -24,6 +24,9 @@ export default function Header() {
       <li>
         <CustomLink to="/blogs">Blogs</CustomLink>
       </li>
+      <li>
+        <CustomLink to="/myportfolio">My Portfolio</CustomLink>
+      </li>
     </>
   );
 

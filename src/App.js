@@ -18,6 +18,7 @@ import AddProduct from "./Pages/dashboard/AddProduct";
 import MakeAdmin from "./Pages/dashboard/MakeAdmin";
 import ManageOrders from "./Pages/dashboard/ManageOrders";
 import ManageProduct from "./Pages/dashboard/ManageProduct";
+import MyPortfolio from "./Pages/MyPortfolio/MyPortfolio";
 
 function App() {
   return (
@@ -26,6 +27,10 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
+        <Route
+          path="/myportfolio"
+          element={<MyPortfolio></MyPortfolio>}
+        ></Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signup" element={<SignUp></SignUp>}></Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
