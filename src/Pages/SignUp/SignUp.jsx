@@ -7,6 +7,7 @@ import {
   useUpdateProfile,
 } from "react-firebase-hooks/auth";
 import Loading from "../../hooks/Loading";
+import UseToken from "../../hooks/UseToken";
 export default function SignUp() {
   const { register, handleSubmit } = useForm();
   const [error, setError] = useState("");
@@ -14,6 +15,7 @@ export default function SignUp() {
     useCreateUserWithEmailAndPassword(auth);
   const [updateProfile, updating, UpdateError] = useUpdateProfile(auth);
   const navigate = useNavigate();
+  const token = UseToken(user);
 
   const onSubmit = async (data) => {
     const { Name, Email, Password, ConfirmPassword } = data;
@@ -30,9 +32,11 @@ export default function SignUp() {
     await createUserWithEmailAndPassword(Email, Password);
 
     await updateProfile({ displayName: Name });
-
-    navigate("/");
   };
+
+  if (token) {
+    navigate("/");
+  }
 
   if (loading || updating) {
     <Loading></Loading>;

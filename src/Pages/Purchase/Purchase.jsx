@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import auth from "../../firebase.init";
+import UseToken from "../../hooks/UseToken";
 
 export default function Purchase() {
   const { id } = useParams();
@@ -9,11 +10,23 @@ export default function Purchase() {
   const phoneNumRef = useRef("");
   const OrderQuantityRef = useRef("");
   const addressRef = useRef("");
-
+  const token = UseToken();
+  const navigate = useNavigate();
   useEffect(() => {
-    fetch(`http://localhost:5000/tools/${id}`)
+    const accesstoken = localStorage.getItem("accessToker");
+    if (accesstoken == null) {
+      navigate("/login");
+    }
+    fetch(`http://localhost:5000/tools/${id}`, {
+      method: "GET",
+      headers: {
+        authorization: `Bearer ${accesstoken}`,
+      },
+    })
       .then((res) => res.json())
-      .then((data) => setTool(data));
+      .then((data) => {
+        setTool(data);
+      });
   }, []);
 
   const [user, loading, error] = useAuthState(auth);

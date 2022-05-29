@@ -7,6 +7,7 @@ import {
 } from "react-firebase-hooks/auth";
 import auth from "../../firebase.init";
 import { toast } from "react-toastify";
+import UseToken from "../../hooks/UseToken";
 
 export default function Login() {
   const emailRef = useRef("");
@@ -19,7 +20,7 @@ export default function Login() {
     useSendPasswordResetEmail(auth);
   const navigate = useNavigate();
   const location = useLocation();
-
+  const token = UseToken(user || googleuser);
   const from = location.state?.from?.pathname || "/";
 
   const handleLoginSubmit = (e) => {
@@ -36,7 +37,7 @@ export default function Login() {
     signInWithGoogle(email, password);
   };
 
-  if (user || googleuser) {
+  if (token) {
     return navigate(from, { replace: true });
   }
 

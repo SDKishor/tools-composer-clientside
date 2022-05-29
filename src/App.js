@@ -9,6 +9,11 @@ import { RequireAuth } from "./hooks/RequireAuth";
 import Purchase from "./Pages/Purchase/Purchase";
 import Dashboard from "./Pages/dashboard/Dashboard";
 import Blogs from "./Pages/Blogs/Blogs";
+import NotFound from "./Pages/NotFound/NotFound";
+import AllProduct from "./Pages/Purchase/AllProduct";
+import MyProfile from "./Pages/dashboard/MyProfile";
+import AddReview from "./Pages/dashboard/AddReview";
+import MyOrder from "./Pages/dashboard/MyOrder";
 
 function App() {
   return (
@@ -20,6 +25,7 @@ function App() {
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signup" element={<SignUp></SignUp>}></Route>
         <Route path="/blogs" element={<Blogs></Blogs>}></Route>
+        <Route path="/purchase" element={<AllProduct></AllProduct>}></Route>
         <Route
           path="/Purchase/:id"
           element={
@@ -36,7 +42,13 @@ function App() {
               <Dashboard></Dashboard>
             </RequireAuth>
           }
-        ></Route>
+        >
+          <Route index element={<MyProfile></MyProfile>}></Route>
+          <Route path="addreview" element={<AddReview></AddReview>}></Route>
+          <Route path="myorders" element={<MyOrder></MyOrder>}></Route>
+        </Route>
+
+        <Route path="/*" element={<NotFound></NotFound>}></Route>
       </Routes>
 
       <ToastContainer />

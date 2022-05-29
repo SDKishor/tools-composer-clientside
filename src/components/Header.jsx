@@ -6,14 +6,18 @@ import auth from "../firebase.init";
 import CustomLink from "../hooks/CustomLink";
 
 export default function Header() {
+  const [user, loading, error] = useAuthState(auth);
+
   const menuItems = (
     <>
       <li>
         <CustomLink to="/">Home</CustomLink>
       </li>
-      <li>
-        <CustomLink to="/dashboard">Dashboard</CustomLink>
-      </li>
+      {user && (
+        <li>
+          <CustomLink to="/dashboard">Dashboard</CustomLink>
+        </li>
+      )}
       <li>
         <CustomLink to="/Purchase">Purchase</CustomLink>
       </li>
@@ -23,12 +27,9 @@ export default function Header() {
     </>
   );
 
-  const [user, loading, error] = useAuthState(auth);
-
-  console.log(user);
-
   const handleLogout = () => {
     signOut(auth);
+    localStorage.removeItem("accessToker");
   };
 
   return (
@@ -68,7 +69,7 @@ export default function Header() {
       <div className="navbar-end mx-5">
         {user ? (
           <p className="btn btn-ghost mr-2 hidden sm:inline-flex ">
-            {user.displayName.split(" ")[0]}
+            {user?.displayName?.split(" ")[0]}
           </p>
         ) : (
           <Link to={"/login"} className="btn btn-ghost mr-2">
