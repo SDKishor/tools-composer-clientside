@@ -5,6 +5,7 @@ import auth from "../firebase.init";
 
 export default function UseIsAdmin() {
   const [user, loading, error] = useAuthState(auth);
+  const [adminload, setAdminload] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
@@ -22,9 +23,10 @@ export default function UseIsAdmin() {
       .then((data) => {
         if (data.role == "admin") {
           setIsAdmin(true);
+          setAdminload(false);
         }
       });
   }, []);
 
-  return [isAdmin, setIsAdmin];
+  return [isAdmin, setIsAdmin, adminload];
 }

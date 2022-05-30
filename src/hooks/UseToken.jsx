@@ -17,6 +17,7 @@ export default function UseToken(user) {
       })
         .then((res) => res.json())
         .then((data) => {
+          console.log(data);
           const accessToken = data.token;
           localStorage.setItem("accessToker", accessToken);
           setToken(accessToken);

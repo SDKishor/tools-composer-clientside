@@ -40,7 +40,6 @@ export default function ManageProduct() {
               <th>Stock</th>
               <th>Price</th>
               <th>Delete</th>
-              <th onClick={() => toast("hi")}>Delete</th>
             </tr>
           </thead>
           <tbody>

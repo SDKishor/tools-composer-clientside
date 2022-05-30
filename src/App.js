@@ -19,6 +19,7 @@ import MakeAdmin from "./Pages/dashboard/MakeAdmin";
 import ManageOrders from "./Pages/dashboard/ManageOrders";
 import ManageProduct from "./Pages/dashboard/ManageProduct";
 import MyPortfolio from "./Pages/MyPortfolio/MyPortfolio";
+import { RequireAdmin } from "./hooks/RequireAdmin";
 
 function App() {
   return (
@@ -53,18 +54,40 @@ function App() {
           }
         >
           <Route index element={<MyProfile></MyProfile>}></Route>
+          <Route path="myorders" element={<MyOrder></MyOrder>}></Route>
           <Route path="addreview" element={<AddReview></AddReview>}></Route>
-          <Route path="addproduct" element={<AddProduct></AddProduct>}></Route>
-          <Route path="makeadmin" element={<MakeAdmin></MakeAdmin>}></Route>
+          <Route
+            path="addproduct"
+            element={
+              <RequireAdmin>
+                <AddProduct></AddProduct>
+              </RequireAdmin>
+            }
+          ></Route>
+          <Route
+            path="makeadmin"
+            element={
+              <RequireAdmin>
+                <MakeAdmin></MakeAdmin>
+              </RequireAdmin>
+            }
+          ></Route>
           <Route
             path="manageorders"
-            element={<ManageOrders></ManageOrders>}
+            element={
+              <RequireAdmin>
+                <ManageOrders></ManageOrders>
+              </RequireAdmin>
+            }
           ></Route>
           <Route
             path="manageproducts"
-            element={<ManageProduct></ManageProduct>}
+            element={
+              <RequireAdmin>
+                <ManageProduct></ManageProduct>
+              </RequireAdmin>
+            }
           ></Route>
-          <Route path="myorders" element={<MyOrder></MyOrder>}></Route>
         </Route>
 
         <Route path="/*" element={<NotFound></NotFound>}></Route>

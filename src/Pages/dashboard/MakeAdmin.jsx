@@ -26,6 +26,7 @@ export default function MakeAdmin() {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
+          toast.success();
         });
     }
     refetch();
