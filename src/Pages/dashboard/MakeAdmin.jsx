@@ -8,7 +8,9 @@ export default function MakeAdmin() {
     data: users,
     refetch,
   } = useQuery("users", () => {
-    return fetch("http://localhost:5000/users").then((res) => res.json());
+    return fetch("https://gentle-waters-15419.herokuapp.com/users").then(
+      (res) => res.json()
+    );
   });
 
   const makeAdmin = (user) => {
@@ -16,7 +18,7 @@ export default function MakeAdmin() {
     const currentUser = { role: "admin" };
 
     if (email) {
-      fetch(`http://localhost:5000/user/${email}`, {
+      fetch(`https://gentle-waters-15419.herokuapp.com/user/${email}`, {
         method: "PUT",
         headers: {
           "content-type": "application/json",
@@ -33,7 +35,7 @@ export default function MakeAdmin() {
   };
 
   const handleDelete = (id) => {
-    const url = `http://localhost:5000/users/${id}`;
+    const url = `https://gentle-waters-15419.herokuapp.com/users/${id}`;
     const proceed = window.confirm("are you sure?");
 
     if (proceed) {

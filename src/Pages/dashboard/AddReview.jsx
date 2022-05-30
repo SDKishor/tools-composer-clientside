@@ -17,7 +17,7 @@ export default function AddReview() {
 
     const updateDoc = { name, email, review };
 
-    fetch("http://localhost:5000/addreview", {
+    fetch("https://gentle-waters-15419.herokuapp.com/addreview", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

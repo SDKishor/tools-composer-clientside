@@ -8,11 +8,13 @@ export default function ManageProduct() {
     data: tools,
     refetch,
   } = useQuery("users", () => {
-    return fetch("http://localhost:5000/tools").then((res) => res.json());
+    return fetch("https://gentle-waters-15419.herokuapp.com/tools").then(
+      (res) => res.json()
+    );
   });
 
   const handleDelete = (id) => {
-    const url = `http://localhost:5000/tools/${id}`;
+    const url = `https://gentle-waters-15419.herokuapp.com/tools/${id}`;
     const proceed = window.confirm("are you sure?");
 
     if (proceed) {

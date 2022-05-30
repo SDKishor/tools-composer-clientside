@@ -5,7 +5,9 @@ import { useQuery } from "react-query";
 
 export default function Review() {
   const { isLoading, data: reviews } = useQuery("users", () => {
-    return fetch("http://localhost:5000/reviews").then((res) => res.json());
+    return fetch("https://gentle-waters-15419.herokuapp.com/reviews").then(
+      (res) => res.json()
+    );
   });
   return (
     <div className="w-full flex flex-col justify-center mb-20 ">

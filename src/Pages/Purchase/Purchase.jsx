@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import auth from "../../firebase.init";
 import UseToken from "../../hooks/UseToken";
 
@@ -17,7 +18,7 @@ export default function Purchase() {
     if (accesstoken == null) {
       navigate("/login");
     }
-    fetch(`http://localhost:5000/tools/${id}`, {
+    fetch(`https://gentle-waters-15419.herokuapp.com/tools/${id}`, {
       method: "GET",
       headers: {
         authorization: `Bearer ${accesstoken}`,
@@ -40,6 +41,19 @@ export default function Purchase() {
     const address = addressRef.current.value;
 
     const placeOrder = { email, phoneNum, name, OrderQuentuty, address };
+
+    fetch("https://gentle-waters-15419.herokuapp.com/addorder", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(placeOrder),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        toast.success("Order is successful");
+      });
   };
   return (
     <div className="h-screen flex items-center">
@@ -76,10 +90,10 @@ export default function Purchase() {
                 Name
               </label>
               <input
-                disabled
+                readOnly
                 type="text"
                 value={user.displayName}
-                className="block w-full px-4 py-2 mt-2 text-primary bg-opacity-10 bg-orange-600 border rounded-md focus:border-primary focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40"
+                className="block w-full px-4 py-2 mt-2 text-primary bg-opacity-10 bg-orange-600 border rounded-md focus:outline-none"
               />
             </div>
             <div className="mt-2">
@@ -90,10 +104,10 @@ export default function Purchase() {
                 Email
               </label>
               <input
-                disabled
+                readOnly
                 value={user.email}
                 type="email"
-                className="block w-full px-4 py-2 mt-2 text-primary bg-opacity-10 bg-orange-600 border rounded-md focus:border-primary focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40"
+                className="block w-full px-4 py-2 mt-2 text-primary bg-opacity-10 bg-orange-600 border rounded-md focus:outline-none"
               />
             </div>
             <div className="mt-5 flex justify-between">
@@ -102,10 +116,10 @@ export default function Purchase() {
                   Available Quantity
                 </label>
                 <input
-                  disabled
+                  readOnly
                   type="number"
                   value={tool.Stock}
-                  className="block w-full px-4 py-2 mt-2 text-primary bg-opacity-10 bg-orange-600 border rounded-md focus:border-primary focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40 mb-2 "
+                  className="block w-full px-4 py-2 mt-2 text-primary bg-opacity-10 bg-orange-600 border rounded-md focus:outline-none "
                 />
               </div>
               <div className="">
@@ -113,10 +127,10 @@ export default function Purchase() {
                   Minimun Order
                 </label>
                 <input
-                  disabled
+                  readOnly
                   value={tool.minimum_quantity}
                   type="number"
-                  className="block w-full px-4 py-2 mt-2 text-primary bg-opacity-10 bg-orange-600 border rounded-md focus:border-primary focus:ring-primary focus:outline-none focus:ring focus:ring-opacity-40 mb-2 "
+                  className="block w-full px-4 py-2 mt-2 text-primary bg-opacity-10 bg-orange-600 border rounded-md focus:outline-none "
                 />
               </div>
             </div>

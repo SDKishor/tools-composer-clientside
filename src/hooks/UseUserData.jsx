@@ -4,7 +4,7 @@ export const UseUserData = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://gentle-waters-15419.herokuapp.com/users")
       .then((res) => res.json())
       .then((data) => {
         setUsers(data);
